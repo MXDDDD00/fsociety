@@ -27,10 +27,10 @@ Sometimes I dream of saving the world. Saving everyone from the invisible hand, 
 ## installation
 
 ```bash
-git clone https://github.com
+git clone https://github.com/MXDDDD00/fsociety
 cd fsociety
-chmod +x install.sh
-sudo ./install.sh
+chmod +x finstall.sh
+sudo ./finstall.sh
 ```
 ## usage
 
