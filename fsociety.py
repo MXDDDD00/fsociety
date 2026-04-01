@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+!/usr/bin/env python3
 
 import time
 import sys
@@ -29,14 +29,15 @@ MY_ART = r"""
 ⠀⠀⠀⣶⡶⠆⣴⡿⡖⣠⣾⣷⣆⢠⣶⣿⣆⣶⢲⣶⠶⢰⣶⣿⢻⣷⣴⡖⠀⠀
 ⠀⠀⢠⣿⣷⠂⠻⣷⡄⣿⠁⢸⣿⣿⡏⠀⢹⣿⢸⣿⡆⠀⣿⠇⠀⣿⡟⠀⠀⠀
 ⠀⠀⢸⣿⠀⠰⣷⡿⠃⠻⣿⡿⠃⠹⣿⡿⣸⡏⣾⣷⡆⢠⣿⠀⠀⣿⠃⠀⠀⠀
-
-
 """
 
 def main():
     art_lines = MY_ART.strip("\n").split("\n")
     art_width = max(len(line) for line in art_lines)
-    spacing = 10
+    h_spacing = 10
+    v_spacing = 5
+    
+    full_art_block = art_lines + ([" " * art_width] * v_spacing)
     
     sys.stdout.write("\033[?25l\033[2J\033[H")
     
@@ -50,9 +51,10 @@ def main():
             output = []
             
             for i in range(term_height):
-                line_idx = (i + offset) % len(art_lines)
-                base_line = art_lines[line_idx]
-                full_line = (base_line + " " * spacing) * ((term_width // (art_width + spacing)) + 2)
+                line_idx = (i + offset) % len(full_art_block)
+                base_line = full_art_block[line_idx]
+                
+                full_line = (base_line + " " * h_spacing) * ((term_width // (art_width + h_spacing)) + 2)
                 output.append(full_line[:term_width] + "\033[K")
             
             sys.stdout.write("\n".join(output))
